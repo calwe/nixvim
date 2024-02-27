@@ -17,4 +17,30 @@
       };
     };
   };
+
+  globals.mapleader = " ";
+  keymaps = [
+    {
+      key = " ";
+      action = "<nop>";
+    }
+    {
+      mode = "n";
+      key = "<leader>t";
+      options.silent = true;
+      action = "<cmd>Neotree toggle<CR>";
+    }
+    {
+      mode = "n";
+      key = "<Tab>";
+      options.silent = true;
+      action = "<cmd>BufferLineCycleNext<CR>";
+    }
+    {
+      mode = "n";
+      key = "<S-Tab>";
+      options.silent = true;
+      action = "<cmd>BufferLineCyclePrev<CR>";
+    }
+  ];
 }
