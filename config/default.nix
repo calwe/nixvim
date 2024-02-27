@@ -5,42 +5,53 @@
     ./bufferline.nix
   ];
 
-  colorschemes.catppuccin.enable = true;
+  config = {
+    colorschemes.catppuccin.enable = true;
 
-  plugins = {
-    lualine.enable = true;
-    neo-tree.enable = true;
-    nix.enable = true;
-    lsp = {
-      enable = true;
-      servers = {
+    options = {
+      number = true;
+      relativenumber = true;
+
+      expandtab = true;
+      shiftwidth = 4;
+      tabstop = 4;
+    };
+
+    plugins = {
+      lualine.enable = true;
+      neo-tree.enable = true;
+      nix.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+        };
       };
     };
-  };
 
-  globals.mapleader = " ";
-  keymaps = [
-    {
-      key = " ";
-      action = "<nop>";
-    }
-    {
-      mode = "n";
-      key = "<leader>t";
-      options.silent = true;
-      action = "<cmd>Neotree toggle<CR>";
-    }
-    {
-      mode = "n";
-      key = "<Tab>";
-      options.silent = true;
-      action = "<cmd>BufferLineCycleNext<CR>";
-    }
-    {
-      mode = "n";
-      key = "<S-Tab>";
-      options.silent = true;
-      action = "<cmd>BufferLineCyclePrev<CR>";
-    }
-  ];
+    globals.mapleader = " ";
+    keymaps = [
+      {
+        key = " ";
+        action = "<nop>";
+      }
+      {
+        mode = "n";
+        key = "<leader>t";
+        options.silent = true;
+        action = "<cmd>Neotree toggle<CR>";
+      }
+      {
+        mode = "n";
+        key = "<Tab>";
+        options.silent = true;
+        action = "<cmd>BufferLineCycleNext<CR>";
+      }
+      {
+        mode = "n";
+        key = "<S-Tab>";
+        options.silent = true;
+        action = "<cmd>BufferLineCyclePrev<CR>";
+      }
+    ];
+  };
 }
