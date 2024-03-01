@@ -18,13 +18,20 @@
     };
 
     plugins = {
+      luasnip.enable = true;
+      treesitter.enable = true;
       lualine.enable = true;
+      telescope.enable = true;
       neo-tree.enable = true;
       nix.enable = true;
       lsp = {
         enable = true;
         servers = {
-          rust-analyzer.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
         };
       };
 
@@ -34,22 +41,24 @@
         sources = [
           { name = "nvim_lsp"; }
           { name = "path"; }
-          { name = "nuffer"; }
+          { name = "buffer"; }
+          { name = "luasnip"; }
         ];
+
+        snippet.expand = "luasnip";
 
         mapping = {
           "<CR>" = "cmp.mapping.confirm({ select = true })";
           "<Tab>" = {
             action = ''
               function(fallback)
+                luasnip = require("luasnip")
                 if cmp.visible() then
                   cmp.select_next_item()
                 elseif luasnip.expandable() then
                   luasnip.expand()
                 elseif luasnip.expand_or_jumpable() then
                   luasnip.expand_or_jump()
-                elseif check_backspace() then
-                  fallback()
                 else
                   fallback()
                 end
@@ -85,6 +94,12 @@
         key = "<S-Tab>";
         options.silent = true;
         action = "<cmd>BufferLineCyclePrev<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>g";
+        options.silent = true;
+        action = "<cmd>Telescope live_grep<CR>";
       }
     ];
   };
