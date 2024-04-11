@@ -70,6 +70,9 @@
       };
     };
 
+    extraPlugins = with pkgs.vimPlugins; [
+      vim-just
+    ];
 
     globals.mapleader = " ";
     keymaps = [
