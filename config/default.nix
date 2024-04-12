@@ -25,6 +25,7 @@
       neo-tree.enable = true;
       nix.enable = true;
       lsp = {
+        preConfig = "require('neoconf').setup()";
         enable = true;
         servers = {
           rust-analyzer = {
@@ -72,6 +73,7 @@
 
     extraPlugins = with pkgs.vimPlugins; [
       vim-just
+      neoconf-nvim
     ];
 
     globals.mapleader = " ";
